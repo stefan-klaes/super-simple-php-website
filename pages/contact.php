@@ -11,7 +11,7 @@
  * @navname: Contact
  * @navicon: send
  * @navdisplay: main
- * @navmobile: 3:main
+ * @navmobile: popup
  * 
  */
 
@@ -33,34 +33,34 @@
      $is_error = 'no';
  
      if ( $name == '' ) {
-         $error['name'] = 'Bitte gib einen Namen an.';
+         $error['name'] = 'Please check the name.';
          $is_error = 'yes';
      }
      if ( $subject == '' ) {
-         $error['subject'] = 'Bitte gib einen subject an.';
+         $error['subject'] = 'Please check the subject.';
          $is_error = 'yes';
      }
      if ( $mail == '' ) {
-         $error['mail'] = 'Bitte gib eine E-Mail Adresse an.';
+         $error['mail'] = 'Please check the email address.';
          $is_error = 'yes';
      }
      else if ( !is_email($mail) ) {
-         $error['mail'] = 'Die E-Mail Adresse ist not korrekt.';
+         $error['mail'] = 'Email address looks not correct.';
          $is_error = 'yes';
      }
      if ( $message == '' ) {
-         $error['message'] = 'Bitte schreibe eine Nachricht.';
+         $error['message'] = 'Message should not be empty';
          $is_error = 'yes';
      }
      if ( $datacheck !== 'yes' ) {
-         $error['datacheck'] = 'Bitte lies diesen Absatz und stimme zu.';
+         $error['datacheck'] = 'Please accept the data-privacy';
          $is_error = 'yes';
      }
      
      $coreInstance = new Core();
  
      if ( $is_error == 'yes' ) {
-         $error_txt = '<span class="sticky_hinweis sticky_error stickyleft">Formular not submitted. Überprüfe die Angaben.</span>';
+         $error_txt = '<span class="sticky_hinweis sticky_error stickyleft">Formular not submitted. Please check the errors.</span>';
          echo $error_txt;
          ?>
          <script>
@@ -77,7 +77,7 @@
          </script>
          <?php
          
-         $coreInstance->tracking($request_url,'event','failed kontaktanfrage');
+         $coreInstance->tracking($request_url,'event','failed form submit');
      }
      else {
          // formular erfolgreich submitted
@@ -85,12 +85,11 @@
          $headline = 'Danke';
  
          $to = 'stefan@coden-lassen.de';
-         $subject = $subject;
          $reply_to = $mail;
          $reply_to_name = $name;
          sendMail($to, $subject, $message, $reply_to, $reply_to_name);
  
-         $coreInstance->tracking($request_url,'event','kontaktanfrage');
+         $coreInstance->tracking($request_url,'event','form submit');
          // END formular erfolgreich submitted
      }
  
@@ -147,7 +146,7 @@
                             <?php get_icon("mail",32,"iniconbox") ?>
                             <div onclick="focus_input(this)" class="md_input martop20 <?php echo !empty($_POST["mail"]) ? "md_input_valid" : "" ?>">
                                 <label for="mail">
-                                    E-Mail Adresse
+                                    Email address
                                 </label>
                                 <input id="mail" onchange="this_validated_md(this)" onkeyup="this_validated_md(this)" name="mail" type="email" value="<?php echo isset($_POST["mail"]) ? $_POST["mail"] : "" ?>"/>
                             </div>
@@ -169,7 +168,7 @@
                             <?php get_icon("label",32,"iniconbox") ?>
                             <div onclick="focus_input(this)" class="md_input martop20 <?php echo !empty($_POST["subject"]) ? "md_input_valid" : "" ?>">
                                 <label for="subject">
-                                    subject
+                                    Subject
                                 </label>
                                 <input id="subject" onchange="this_validated_md(this)" onkeyup="this_validated_md(this)" name="subject" type="text" value="<?php echo isset($_POST["subject"]) ? $_POST["subject"] : "" ?>"/>
                             </div>
@@ -186,7 +185,7 @@
                             <?php get_icon("write",32,"iniconbox") ?>
                             <div onclick="focus_input(this)" class="md_input martop20 <?php echo !empty($_POST["message"]) ? "md_input_valid" : "" ?>">
                                 <label for="message">
-                                    Nachricht
+                                    Message
                                 </label>
                                 <textarea class="kontakt_textarea" id="message" onchange="this_validated_md(this)" onkeyup="this_validated_md(this)" name="message"><?php echo isset($_POST["message"]) ? $_POST["message"] : "" ?></textarea>
                             </div>

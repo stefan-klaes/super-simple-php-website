@@ -162,3 +162,83 @@ function deletecookie( cname ) {
         }
     }
 }
+
+// open mobile menu overlay
+function open_mobile_menu() {
+
+    var mobile_menu_popup = document.getElementById("mobile_menu_popup");
+    if ( mobile_menu_popup.className.indexOf("popup_closed") > -1 ) {
+        mobile_menu_popup.classList.remove("popup_closed");
+        document.getElementById("bg").style.display = "";
+    }
+    else {
+        mobile_menu_popup.classList.add("popup_closed");
+        document.getElementById("bg").style.display = "none";
+    }
+    
+
+ }
+
+
+ 
+function focus_input(thiss) {
+    try {
+        thiss.getElementsByTagName("input")[0].focus();
+    }
+    catch(e) {
+        thiss.getElementsByTagName("textarea")[0].focus();
+    }
+    
+}
+
+
+// material design like label position
+function this_validated(thiss) {
+
+        if ( thiss.value == "" ) {
+            thiss.classList.remove("text_validated");
+        }
+        else {
+            thiss.classList.add("text_validated");
+        }
+    
+}
+
+// material design like label position
+function this_validated_md(thiss) {
+        if ( thiss.value == "" ) {
+            thiss.parentElement.classList.remove("md_input_valid");
+        }
+        else {
+            thiss.parentElement.classList.add("md_input_valid");
+        }
+   
+}
+
+
+// toggle a switch
+function switch_toggle(thiss) {
+ 
+    if ( thiss.className.indexOf("switch_yes") > - 1 ) {
+        thiss.classList.remove("switch_yes");
+        var switch_active = "no";
+    }
+    else {
+        thiss.classList.add("switch_yes");
+        var switch_active = "yes";
+    }
+ 
+    var title = thiss.title;
+ 
+    if ( title.indexOf("datenschutz") > -1 ) {
+        if ( switch_active == "yes" ) {
+            document.getElementById("hidden_datenschutz").value = "yes";
+        }
+        else {
+            document.getElementById("hidden_datenschutz").value = "no";
+        }
+        
+ 
+    }
+ 
+}

@@ -402,37 +402,6 @@ function confirm_and_link(url) {
 
 }
 
-function focus_input(thiss) {
-    try {
-        thiss.getElementsByTagName("input")[0].focus();
-    }
-    catch(e) {
-        thiss.getElementsByTagName("textarea")[0].focus();
-    }
-    
-}
-
-function this_validated(thiss) {
-
-        if ( thiss.value == "" ) {
-            thiss.classList.remove("text_validated");
-        }
-        else {
-            thiss.classList.add("text_validated");
-        }
-    
-}
-
-function this_validated_md(thiss) {
-        if ( thiss.value == "" ) {
-            thiss.parentElement.classList.remove("md_input_valid");
-        }
-        else {
-            thiss.parentElement.classList.add("md_input_valid");
-        }
-   
-}
-
 
 function bubbles_answer(ask) {
 
@@ -475,31 +444,6 @@ function bubbles_answer(ask) {
 }
 
 
-function switch_toggle(thiss) {
- 
-    if ( thiss.className.indexOf("switch_yes") > - 1 ) {
-        thiss.classList.remove("switch_yes");
-        var switch_active = "no";
-    }
-    else {
-        thiss.classList.add("switch_yes");
-        var switch_active = "yes";
-    }
- 
-    var title = thiss.title;
- 
-    if ( title.indexOf("datenschutz") > -1 ) {
-        if ( switch_active == "yes" ) {
-            document.getElementById("hidden_datenschutz").value = "yes";
-        }
-        else {
-            document.getElementById("hidden_datenschutz").value = "no";
-        }
-        
- 
-    }
- 
-}
 
 function darkmode() {
     var element = document.body;

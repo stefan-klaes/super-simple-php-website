@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * @route: path="/about-me" name="About me"
+ * @route: path="/about-me" name="about-me"
  * @headline: About me
  * @seotitle: My Sample Page Title
  * @seodesc: This is my description to hope my seo ranking will be better
@@ -36,7 +36,7 @@ $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birt
             foreach ( $skill_chips as $chip ) {
                 ?>
                 <div class="chip" style="line-height: 24px;">
-                    <?php get_icon("herz",24,"inchip") ?>
+                    <?php get_icon("heart",24,"inchip") ?>
                     <span><?php echo $chip ?></span>
                 </div>
                 <?php

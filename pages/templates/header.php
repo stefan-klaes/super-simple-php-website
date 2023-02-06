@@ -112,7 +112,6 @@
 
             $structure_match = $this_structure;
 
-            $menu_active = "";
             $count = 0;
             foreach ($nav_data['mobile_main'] as $nav_row) {
                   $nav_headline_loop = $nav_row['nav_headlines'];
@@ -124,11 +123,12 @@
                         $nav_link = $nav_row['nav_links'][$i];
                         $nav_icon = $nav_row['nav_icons'][$i];
 
-                        if ( $structure_match == $nav_links ) {
+                        $menu_active = "";
+                        if ($this_path == $nav_link) {
                               $menu_active = "bottom_nav_i_active";
                         }
 
-                        if ( $count == 1 ) {
+                        if ( $count == 1 && isset($nav_data['mobile_popup']) && sizeof($nav_data['mobile_popup']) > 0 ) {
                               ?>
                               <a onclick="open_mobile_menu()" class="bottom_nav_item">
                                     <div class="bottom_nav_i">
@@ -173,7 +173,13 @@
 
       $count = 0;
       if ( isset($nav_data['mobile_popup']) && sizeof($nav_data['mobile_popup']) > 0 ) {
-            $last_i = sizeof($nav_headlines) - 1;
+            $last_i = -1;
+            foreach ($nav_data['mobile_popup'] as $nav_row) {
+                  $nav_headline_loop = $nav_row['nav_headlines'];
+                  for ($i = 0; $i < sizeof($nav_headline_loop); $i++) {
+                        $last_i++;
+                  }
+            }
             foreach ($nav_data['mobile_popup'] as $nav_row) {
                   $nav_headline_loop = $nav_row['nav_headlines'];
                   

@@ -1,3 +1,75 @@
+.displaynone {
+    display: none;
+}
+.answer_bubble .button_link {
+    color: var(--hell);
+    text-decoration: underline;
+}
+.answer_bubble {
+    background: var(--primhell2);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    color: var(--hell);
+    font-size: 24px;
+    position: relative;
+    max-width: 700px
+}
+.answer_bubble:after {
+    content: "";
+    border-width: 15px 15px 0;
+    border-style: solid;
+    border-color: var(--primhell2) transparent;
+    position: absolute;
+    top: 98%;
+    left: 20px;
+}
+.bubble_wrap_white .answer_bubble:after {
+    border-color: var(--prim) transparent;
+    right: 20px;
+    left: unset;
+}
+.bubble_wrap_white .answer_bubble {
+    background: var(--prim);
+    color: var(--hell);
+    width: fit-content;
+}
+.bubble_wrap_prim .answer_bubble {
+    background: var(--border);
+    color: var(--txt);
+    width: fit-content;
+}
+.no_shadow .darklight {
+    background: var(--bghov);
+}
+.darklight {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    border: 1px solid var(--border);
+    background: var(--hellm);
+    line-height: 38px;
+    vertical-align: middle;
+    border-radius: 100px;
+    z-index: 3;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+}
+.darklight:hover {
+    border-color: var(--prim);
+    color: var(--prim);
+}
+.darklight i {
+    vertical-align: middle;
+    transform: rotate(-90deg);
+    margin-bottom: 2px;
+    transition: all 0.2s;
+}
+
+/* SPLIT */
 :root {
     --bg: #f5f5f5;
     --bghov: #eee;
@@ -50,7 +122,12 @@
     --secprim: #efe89a;
     --secprimhov: #dbd37f;
 }
-
+.darkmode .code_highlight span {
+    color: var(--txt) !important;
+}
+.darkmode #bg {
+    background: #fff !important;
+}
 @font-face {
     font-family: 'Roboto';
     src: url('../fonts/Roboto-BoldItalic.eot');
@@ -217,83 +294,6 @@ h1, h2, h3 {
 h3 {
     font-size: 22px;
 }
-.displaynone {
-    display: none;
-}
-.answer_bubble .button_link {
-    color: var(--hell);
-    text-decoration: underline;
-}
-.answer_bubble {
-    background: var(--primhell2);
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 30px;
-    color: var(--hell);
-    font-size: 24px;
-    position: relative;
-    max-width: 700px
-}
-.answer_bubble:after {
-    content: "";
-    border-width: 15px 15px 0;
-    border-style: solid;
-    border-color: var(--primhell2) transparent;
-    position: absolute;
-    top: 98%;
-    left: 20px;
-}
-.bubble_wrap_white .answer_bubble:after {
-    border-color: var(--prim) transparent;
-    right: 20px;
-    left: unset;
-}
-.bubble_wrap_white .answer_bubble {
-    background: var(--prim);
-    color: var(--hell);
-    width: fit-content;
-}
-.bubble_wrap_prim .answer_bubble {
-    background: var(--border);
-    color: var(--txt);
-    width: fit-content;
-}
-.no_shadow .darklight {
-    background: var(--bghov);
-}
-.darklight {
-    position: absolute;
-    top: 5px;
-    right: 20px;
-    border: 1px solid var(--border);
-    background: var(--hellm);
-    line-height: 38px;
-    vertical-align: middle;
-    border-radius: 100px;
-    z-index: 3;
-    cursor: pointer;
-    transition: all 0.2s;
-    height: 40px;
-    width: 40px;
-    text-align: center;
-}
-.darklight:hover {
-    border-color: var(--prim);
-    color: var(--prim);
-}
-.darklight i {
-    vertical-align: middle;
-    transform: rotate(-90deg);
-    margin-bottom: 2px;
-    transition: all 0.2s;
-}
-
-.darkmode .code_highlight span {
-    color: var(--txt) !important;
-}
-.darkmode #bg {
-    background: #fff !important;
-}
 .menuesmall {
     position: absolute;
     left: 20px;
@@ -330,6 +330,10 @@ h3 {
 .sidenavlogo img {
     height: 22px;
 }
+.google_sso:hover {
+    -webkit-box-shadow: 0px 20px 30px 0px rgb(0 0 0 / 20%);
+    box-shadow: 0px 20px 30px 0px rgb(0 0 0 / 20%);
+}
 .poplabelhead img {
     height: 24px;
     margin-right: 16px;
@@ -344,6 +348,39 @@ h3 {
     font-weight: normal;
     margin-bottom: 8px;
 }
+.google_sso span {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    opacity: 0.8;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.google_sso img {
+    height: 32px;
+    position: absolute;
+    left: 15px;
+    top: 8px;
+}
+.google_sso {
+    transition: all 0.2s;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    background: var(--hell);
+}
+.odersso {
+    text-align: center;
+    padding: 20px;
+}
+.registrieren_wrap .form-control {
+    font-size: 14px !important;
+}
+.registrieren_wrap h2 {
+    text-align: center;
+    font-size: 32px;
+}
 .icon_warning span:before {
     content: "warning";
 }
@@ -354,6 +391,15 @@ h3 {
     content: "verified";
     opacity: 1 !important;
 }
+.ernsenden {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.7;
+    text-align: center;
+}
 .button_link_ul {
     text-decoration: underline;
     cursor: pointer;
@@ -362,6 +408,33 @@ h3 {
 }
 .button_link_ul:hover {
     opacity: 0.8;
+}
+.der_code input {
+    padding-left: 50px;
+    width: fit-content;
+    border-color: var(--green);
+    cursor: pointer;
+}
+.abmelden_small {
+    font-size: 16px !important;
+    width: fit-content;
+}
+.abmelden_small i {
+    font-size: 16px !important;
+}
+.der_code {
+    position: relative;
+    cursor: pointer;
+    color: var(--green);
+    width: fit-content;
+}
+.all_referenzen {
+    margin: auto;
+}
+.der_code i {
+    position: absolute;
+    left: 10px;
+    top: 10px;
 }
 .button_link {
     transition: all 0.2s;
@@ -429,6 +502,12 @@ h3 {
 .marbo40 {
     margin-bottom: 40px !important;
 }
+.referenz_screenshot img {
+    width: 100%;
+}
+.referenz_screenshot {
+    display: inline-block;
+}
 .marbo20 {
     margin-bottom: 20px;
 }
@@ -475,6 +554,13 @@ body {
     margin-right: 45px;
     opacity: 0.6;
 }
+.beispiel_plugin {
+    background: var(--hellm);
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
 .colhell {
     color: var(--hell);
     fill: var(--hell);
@@ -500,6 +586,36 @@ body {
 .code_highlight::-webkit-scrollbar {
     display: none;
   }
+.panzer_inner {
+    background: var(--hellm);
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    position: relative;
+    text-align: center;
+    z-index: 2;
+}
+.ablauf_div p.heross {
+    font-size: 26px !important;
+}
+.panzer_wrap_center {
+    text-align: center;
+}
+.panzer_inner h4 {
+    font-size: 22px;
+    margin-bottom: 0px !important;
+}
+.panzer_img_wrap {
+    text-align: center;
+    height: 120px;
+}
+.leistung_card img {
+    width: 50%;
+    transition: all 0.3s;
+}
+.panzer_wrap:hover img {
+    padding-top: 30px;
+}
 .row_top_part {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -632,11 +748,37 @@ input, select, textarea {
 .switch_yes {
     background: var(--prim) !important;
 }
+
+.referenz_wrap_inner {
+    padding: 20px;
+}
+.referenz_wrap a {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+.referenz_wrap p {
+    padding-bottom: 40px;
+}
 .iconnav {
     margin-top: -4px;
 }
 .iconnav .svg_icon {
     fill: var(--txt);
+}
+.referenz_wrap h3 {
+    margin-top: 15px;
+}
+.referenz_label {
+    fill: var(--border2);
+    color: var(--border2);
+    margin-top: 15px;
+}
+.referenz_file_name {
+    width: fit-content;
+}
+.ref_filename {
+    font-size: 12px;
 }
 .filter_span {
     display: block;
@@ -725,6 +867,49 @@ input, select, textarea {
 }
 .footer {
     margin-top: 60px;
+}
+.top_footer {
+    padding: 60px 20px 60px 20px;
+    background: var(--hell);
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+.footer_bold {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 22px;
+}
+.top_footer_start {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+.footer_social {
+    display: inline-block;
+    margin-left: 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.1s;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    transition: all 0.3s;
+}
+.footer_follows {
+    height: 24px;
+    vertical-align: middle;
+}
+
+.footer_sec {
+    background: var(--hell2);
+    color: var(--border2);
+    padding: 20px;
+}
+.footer_top {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
 }
 .marri20 {
     margin-right: 20px;
@@ -913,6 +1098,20 @@ td, th {
 }
 .header_sticky .header .button_black_ol:hover {
     background: var(--primhov);
+}
+.meist {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 22px;
+    background: var(--prim);
+    color: var(--hell);
+    font-size: 12px;
+    text-align: center;
+    line-height: 22px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 }
 .alri {
     text-align: right;
@@ -1392,6 +1591,64 @@ a {
     text-align: center;
     z-index: 4;
 }
+/* LOGO */
+.codenlassen_logo {
+    display: flex;
+    text-align: center;
+  }
+  .codenlassen_logo .le {
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid red;
+    position: relative;
+  
+  }
+  .colimg {
+    max-height: 400px;
+  }
+  .codenlassen_logo .re {
+    width: 50%;
+  }
+  .row_inner {
+    display: flex;
+  }
+  .row {
+    display: flex;
+}
+  .col-2 {
+    width: 50%;
+    display: inline-block;
+}
+  .codenlassen_logo .qs {
+    vertical-align: middle;
+    width: 100%;
+  }
+  .codenlassen_logo .ul {
+    color: red;
+  }
+  .codenlassen_logo .le::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    border-bottom: 1px solid red;
+    border-top: 1px solid red;
+  }
+  .codenlassen_logo .or {
+    border: 1px solid black;
+    border-radius: 100px;
+  }
+  .codenlassen_logo .ol {
+    color: red;
+  }
+  .codenlassen_logo .ur {
+    color: blue;
+    border: 1px solid blue;
+    border-radius: 100px;
+   }
+/* LOGO END */
 .material-icons {
     vertical-align: middle;
 }
@@ -1416,6 +1673,9 @@ a {
 .account_popup_head span {
     color: var(--txt);
 }
+
+
+
 .member_save_btn {
     width: fit-content;
     display: block;
@@ -1595,6 +1855,80 @@ a {
 .flex {
     display: flex;
 }
+.circle_puls:before {
+      content: "";
+      position: relative;
+      display: block;
+      width: 250%;
+      height: 250%;
+      box-sizing: border-box;
+      margin-left: -75%;
+      margin-top: -75%;
+      border-radius: 45px;
+      background-color: var(--green);
+      animation: pulse 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+  
+.circle_puls:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: var(--green);
+      border-radius: 50px;
+      animation: circle 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+    }
+  
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.33);
+    }
+    80%,
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes circle {
+    0% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.8);
+    }
+  }
+  
+
+  .notification_card i {
+    margin-right: 5px;
+    margin-bottom: 2px;
+    opacity: 0.6;
+    color: orange;
+}
+.teams_card i {
+    margin-right: 5px;
+    margin-bottom: 2px;
+}
+.upgrade_nav {
+    color: var(--green);
+}
+.notification_card, .teams_card {
+    border: 1px solid var(--border);
+    margin: 20px 0px;
+    height: 36px;
+    line-height: 36px;
+    vertical-align: middle;
+    padding: 0px 10px;
+    border-radius: 5px;
+    background: var(--hell);
+}
 .chip .svg_icon   {
     margin-right: 4px;
     fill: var(--txt);
@@ -1619,6 +1953,26 @@ a {
 .leistung_card img {
     width: 33%;
     min-width: 100px;
+}
+.leistung_card {
+    position: relative;
+    cursor: pointer;
+    background: var(--hellm);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    max-width: 260px;
+    display: inline-block;
+    margin: 20px;
+    transition: all 0.2s;
+}
+.leistung_card:hover {
+    border-color: var(--primhov);
+}
+.leistung_card:hover .button_prim_txt {
+    color: var(--prim);
+    margin-right: -5px !important;
 }
 .chip {
     display: inline-block;
@@ -1714,6 +2068,9 @@ a {
     border-radius: 5px;
     border: 1px solid var(--border);
 }
+.member_info_row input[type="text"], .member_info_row input[type="date"], .member_info_row input[type="time"], .member_info_row input[type="number"], .member_info_row input[type="email"] {
+    background: var(--inputbg);
+}
 .deleteuseri, .edituseri {
     cursor: pointer;
     transform: all 0.2s;
@@ -1721,6 +2078,17 @@ a {
 }
 .deleteuseri:hover, .edituseri:hover {
     opacity: 0.8;
+}
+.member_info_row {
+    padding: 20px;
+    border-radius: 5px;
+    background: var(--hell);
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid var(--border);
+    position: relative;
+    display: inline-block;
+    margin: 10px;
 }
 .tooltip {
     position: absolute;
@@ -1755,13 +2123,4 @@ a {
     background: var(--prim);
     color: var(--hell);
 }
-.colimg {
-    max-height: 400px;
-}
-.row {
-    display: flex;
-}
-.col-2 {
-    width: 50%;
-    display: inline-block;
-}
+/* END member nav */

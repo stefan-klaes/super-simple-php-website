@@ -1,4 +1,5 @@
 <?php
-
-header("Location: /404");
-die();
+/**
+ * silence is golden
+ * just a protection of this folder
+ */ 

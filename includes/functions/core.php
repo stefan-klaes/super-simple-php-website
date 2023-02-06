@@ -310,7 +310,9 @@ class Core {
         $secretsInstance = new Secrets();
         $secrets = $secretsInstance->getSecrets();
 
-        if ( strpos($_SERVER['DOCUMENT_ROOT'],'C:/') == 0 ) {
+        $current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        if ( strpos($current_url,'localhost') > -1 ) {
             global $config;
             if ( isset($config['local_tracking']) && $config['local_tracking'] == true ) {
                 $dbhost = $secrets["local_db_host"];
@@ -329,121 +331,158 @@ class Core {
             $dbname = $secrets["db_name"];
         }
 
-        $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname) or '';
+        try {
+            $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+        } catch (PDOException $e) {
+            $pdo = 'Verbindung local fehlgeschlagen: ' . $e->getMessage();
+        }
         
-        return $conn;
+        return $pdo;
 
     }
 
 
-/**
- * Summary of tracking
- * @param string $request_url_full
- * @param string $type
- * @param string $event
- * @return void
- */
-public function tracking($request_url_full,$type,$event) {
+    /**
+     * Summary of tracking
+     * @param string $request_url_full
+     * @param string $type
+     * @param string $event
+     * @return void
+     */
+    public function tracking($request_url_full,$type,$event) {
 
-    global $config;
+        global $config;
 
-    // if tracking not enabled don't do anything
-    if (!isset($config['tracking']) || $config['tracking'] !== true) {
-        return;
+        // if tracking not enabled don't do anything
+        if (!isset($config['tracking']) || $config['tracking'] !== true) {
+            return;
+        }
+        
+        $referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+
+        if ( strpos($referrer,"style") > 0 || $request_url_full == "favicon.ico" ) {
+            $no_tracking = "yes";
+        }
+        else {
+
+            $pdo = $this->db_connect();
+
+            if ($pdo !== '') {
+
+                $request_url_full = "/" . $request_url_full;
+
+                date_default_timezone_set('Europe/Berlin');
+                $date = date("Y-m-d H:i");
+
+                $url_para_string = "";
+                if (strpos($request_url_full, "?") > -1) {
+                    $url_para_string = explode("?", $request_url_full)[1];
+                    $request_url_full = explode("?", $request_url_full)[0];
+                }
+
+                $page = $request_url_full;
+                $session = session_id();
+                $para = $url_para_string;
+
+                $page = str_replace('//', '/', $page);
+                $referrer = str_replace('//', '/', $referrer);
+
+                $sql = "INSERT INTO tracking (date, type, page, referrer, session, event, para) 
+                    VALUES (:date, :type, :page, :referrer, :session, :event, :para)";
+
+                $stmt = $pdo->prepare($sql);
+
+                $data = [
+                    'date' => $date,
+                    'type' => $type,
+                    'page' => $page,
+                    'referrer' => $referrer,
+                    'session' => $session,
+                    'event' => $event,
+                    'para' => $para
+                ];
+
+                $stmt->execute($data);
+
+                $pdo = null;
+
+            }
+        }
     }
-    
-    $referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 
-    if ( strpos($referrer,"style") > 0 || $request_url_full == "favicon.ico" ) {
-        $no_tracking = "yes";
-    }
-    else {
 
-        $conn = $this->db_connect();
 
-        if ($conn !== '') {
+    public function track_page_view($request_url) {
 
-            $request_url_full = "/" . $request_url_full;
+        $pdo = $this->db_connect();
+
+        if ($pdo !== '') {
+            $referrer = isset($_GET["referrer"]) ? $_GET["referrer"] : "";
+            $type = isset($_GET["type"]) ? $_GET["type"] : "pageview";
+            $event = isset($_GET["event"]) ? $_GET["event"] : "";
+            
+            $request_url_full = "/" . $request_url;
 
             date_default_timezone_set('Europe/Berlin');
-            $datum = date("Y-m-d H:i");
+            $date = date("Y-m-d H:i");
 
+            $request_url_full = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+            $request_url_full = str_replace("https://", "", $request_url_full);
+            $request_url_full = str_replace("http://", "", $request_url_full);
+            $request_url_full = str_replace("coden-lassen.de", "", $request_url_full);
+
+            $referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+            $referrer = str_replace("https://", "", $referrer);
+            $referrer = str_replace("http://", "", $referrer);
+            $referrer = str_replace("coden-lassen.de", "", $referrer);
+            
             $url_para_string = "";
-            if (strpos($request_url_full, "?") > -1) {
-                $url_para_string = explode("?", $request_url_full)[1];
-                $request_url_full = explode("?", $request_url_full)[0];
+            if ( strpos($request_url_full,"?") > -1 ) {
+                $url_para_string = explode("?",$request_url_full)[1];
+                $request_url_full = explode("?",$request_url_full)[0];
             }
 
-            $seite = $request_url_full;
+            $page = $request_url_full;
             $session = session_id();
             $para = $url_para_string;
 
+            $date = strip_tags($date);
+            $type = strip_tags($type);
+            $page = strip_tags($page);
+            $page = str_replace('//', '/', $page);
+            $referrer = strip_tags($referrer);
+            $referrer = str_replace('//', '/', $referrer);
+            $session = strip_tags($session);
+            $event = strip_tags($event);
+            $para = strip_tags($para);
 
-            $sql = "INSERT INTO tracking (datum, type, seite, referrer, session, event, para) 
-            VALUES ('$datum', '$type', '$seite', '$referrer', '$session', '$event', '$para')";
 
-            $save = $conn->query($sql);
-            $conn->close();
-        }
-    }
-}
+            $sql = "INSERT INTO tracking (date, type, page, referrer, session, event, para) 
+            VALUES (:date, :type, :page, :referrer, :session, :event, :para)";
 
+            $stmt = $pdo->prepare($sql);
 
+            $data = [
+                'date' => $date,
+                'type' => $type,
+                'page' => $page,
+                'referrer' => $referrer,
+                'session' => $session,
+                'event' => $event,
+                'para' => $para
+            ];
 
-public function track_page_view($request_url) {
+            $stmt->execute($data);
 
-    $conn = $this->db_connect();
+            $pdo = null;
 
-    if ($conn !== '') {
-        $referrer = isset($_GET["referrer"]) ? $_GET["referrer"] : "";
-        $type = isset($_GET["type"]) ? $_GET["type"] : "pageview";
-        $event = isset($_GET["event"]) ? $_GET["event"] : "";
-        
-        $request_url_full = "/" . $request_url;
-
-        date_default_timezone_set('Europe/Berlin');
-        $datum = date("Y-m-d H:i");
-
-        $request_url_full = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-        $request_url_full = str_replace("https://", "", $request_url_full);
-        $request_url_full = str_replace("http://", "", $request_url_full);
-        $request_url_full = str_replace("coden-lassen.de", "", $request_url_full);
-
-        $referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-        $referrer = str_replace("https://", "", $referrer);
-        $referrer = str_replace("http://", "", $referrer);
-        $referrer = str_replace("coden-lassen.de", "", $referrer);
-        
-        $url_para_string = "";
-        if ( strpos($request_url_full,"?") > -1 ) {
-            $url_para_string = explode("?",$request_url_full)[1];
-            $request_url_full = explode("?",$request_url_full)[0];
         }
 
-        $seite = $request_url_full;
-        $session = session_id();
-        $para = $url_para_string;
+        header('Content-Type: image/gif');
+        echo base64_decode('R0lGODlhAQABAJAAAP8AAAAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==');
+        die();
 
-        $datum = strip_tags($datum);
-        $type = strip_tags($type);
-        $seite = strip_tags($seite);
-        $referrer = strip_tags($referrer);
-        $session = strip_tags($session);
-        $event = strip_tags($event);
-        $para = strip_tags($para);
-
-        $sql = "INSERT INTO tracking (datum, type, seite, referrer, session, event, para) 
-            VALUES ('$datum', '$type', '$seite', '$referrer', '$session', '$event', '$para')";
-
-        $save = $conn->query($sql);
-        $conn->close();
     }
-
-    header('Content-Type: image/gif');
-    echo base64_decode('R0lGODlhAQABAJAAAP8AAAAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==');
-    die();
-
-}
 
 
 

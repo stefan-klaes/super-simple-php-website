@@ -37,6 +37,10 @@ function imgSrc($file_name,$dark) {
 
     $file_path = 'static/img/' . $file_name;
 
+    if ( !file_exists($file_path) && $darkmode == 'darkmode' ) {
+        $file_path = str_replace('darkmode.','.',$file_path);
+    }
+    
     if ( !file_exists($file_path) ) {
         $file_path = ''; 
     }
