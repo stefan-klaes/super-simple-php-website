@@ -8,8 +8,8 @@
 ## Check out the documentation:
 - https://coden-lassen.de/github/super-simple-php-website/docu
 
-![alt text](https://github.com/stefan-klaes/super-simple-php-website/blob/master/static/img/screenshot1.png?raw=true)
-![alt text](https://github.com/stefan-klaes/super-simple-php-website/blob/master/static/img/screenshot2.png?raw=true)
+![My Image](static/img/screenshot1.png)
+![My Image](static/img/screenshot2.png)
 
 ## A few features:
 
