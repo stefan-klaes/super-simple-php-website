@@ -57,7 +57,6 @@
 ```
 
 ### Send emails:
-<?php
 1. add your credentials in secrets/secrets.php
 2. install phpmailer class via terminal
 3. open the terminal and navigate to includes/libs
@@ -77,7 +76,6 @@ sendMail($to, $subject, $message, $reply_to, $reply_to_name);
 ```
 
 ### Connect to databse:
-<?php
 1. add your credentials in secrets/secrets.php
 2. you can now use the php function db_connect()
 3. this will return an connection in a variable
