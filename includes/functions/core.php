@@ -184,38 +184,20 @@ class Core {
         // get requeste url
         $request_url = $this->requestUrl();
 
+        // if tracking
         if ( strpos($request_url,'track/track') > -1 && isset($config['tracking']) && $config['tracking'] == true ) {
             $this->track_page_view($request_url);
-            //include 'includes/templates/tracking/tracking.php';
             die();
         }
-        else if ( strpos($request_url,'/raw-code/') > -1 ) {
-            include 'includes/templates/raw-code/raw-code.php';
-            die();
+        
+
+        // open matching file from route
+        if (isset($routes[$request_url]['file']) && file_exists('pages/' . $routes[$request_url]['file'])) {
+            $route = $routes[$request_url];
+        } else {
+            $route = $routes['/404'];
         }
-        else {
-            $structure = explode("/", $request_url);
-            if ( isset($structure[1]) && $structure[1] == 'referenzen' && isset($structure[2]) && strlen($structure[2]) > 1 ) {
-                $this_referenz = $structure[2];
-                include 'includes/templates/dynamic/my-work.php';
-            }
-            else if ( isset($structure[1]) && $structure[1] == 'blog' && isset($structure[2]) && strlen($structure[2]) > 1 ) {
-                $this_blog = $structure[2];
-                include 'includes/templates/dynamic/blog.php';
-            }
-        }
-
-
-
-
-        if (!isset($other_content)) {
-            // open matching file from route
-            if (isset($routes[$request_url]['file']) && file_exists('pages/' . $routes[$request_url]['file'])) {
-                $route = $routes[$request_url];
-            } else {
-                $route = $routes['/404'];
-            }
-        }
+        
 
         header("Content-Type: text/html; charset=UTF-8");
 

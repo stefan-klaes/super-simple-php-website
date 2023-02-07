@@ -53,7 +53,28 @@
 3. add content, e.g. <p>Hello, my name is Stefan</p>
 4 display the block like this:
 ```  
-<?php showBlock("my-block") ?>
+<?php showBlock('my-block') ?>
+```
+
+## Change the primary colors
+1. edit it in config/config.php
+2. set up primary color for lightmode and darkmode
+```
+$config = [
+    'primary_color' => '#43836f',
+    'primary_color_darkmode' => '#bef1e1',
+    ...
+];
+```
+
+### Add self hosted icons:
+1. if you want to add icons please open the svg file in browser
+2. copy between <svg></svg> without the svg tags
+3. create a file in static/icons
+4. e.g. static/icons/new-icon.php
+5. use it like this
+```
+<p>My new icon looks like this: <?php get_icon('new-icon',26,'') ?></p>
 ```
 
 ### Send emails:
@@ -65,14 +86,12 @@
 6. command: `composer install`
 7. now you can use the sendMail function
 ```
-$to = "stefan@coden-lassen.de";
-$subject = "Test subject";
-$reply_to = "";
-$reply_to_name = "";
-$message = "Test message";
+$to = 'stefan@coden-lassen.de';
+$subject = 'Test subject';
+$reply_to = '';
+$reply_to_name = '';
+$message = 'Test message';
 sendMail($to, $subject, $message, $reply_to, $reply_to_name);
-    
-<?php showBlock("my-block") ?>
 ```
 
 ### Connect to databse:
@@ -90,13 +109,13 @@ $sql = "INSERT INTO tracking (datum, type, seite, referrer, session, event, para
 $stmt = $pdo->prepare($sql);
 
 $data = [
-    "datum" => $datum,
-    "type" => $type,
-    "seite" => $seite,
-    "referrer" => $referrer,
-    "session" => $session,
-    "event" => $event,
-    "para" => $para
+    'datum' => $datum,
+    'type' => $type,
+    'seite' => $seite,
+    'referrer' => $referrer,
+    'session' => $session,
+    'event' => $event,
+    'para' => $para
 ];
 
 $stmt->execute($data);

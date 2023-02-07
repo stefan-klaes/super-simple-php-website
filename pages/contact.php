@@ -107,6 +107,33 @@
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
     }
+
+    // toggle a switch
+function switch_toggle(thiss) {
+ 
+ if ( thiss.className.indexOf("switch_yes") > - 1 ) {
+     thiss.classList.remove("switch_yes");
+     var switch_active = "no";
+ }
+ else {
+     thiss.classList.add("switch_yes");
+     var switch_active = "yes";
+ }
+
+ var title = thiss.title;
+
+ if ( title.indexOf("datacheck") > -1 ) {
+     if ( switch_active == "yes" ) {
+         document.getElementById("hidden_datacheck").value = "yes";
+     }
+     else {
+         document.getElementById("hidden_datacheck").value = "no";
+     }
+     
+
+ }
+
+}
 </script>
 
 

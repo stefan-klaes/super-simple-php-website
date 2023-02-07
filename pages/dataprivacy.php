@@ -1,11 +1,11 @@
 <?php
 /**
  * 
- * @route: path="/datenschutz" name="datenschutz"
- * @headline: Datenschutz
+ * @route: path="/dataprivacy" name="dataprivacy"
+ * @headline: Dataprivacy
  * 
  * navigation data:
- * @navname: Datenschutz
+ * @navname: Dataprivacy
  * @navdisplay: official
  * 
  */

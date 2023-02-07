@@ -6,13 +6,6 @@
     --hellm: #fff;
     --txt: #3a3434;
     --dark: #000;
-    --prim: #43836f;
-    --primhov: #326f5c;
-    --sec: #2dce8b;
-    --sechov: #19a46a;
-    --primhell: #599f89;
-    --primhell2: #56ac91;
-    --primdark: #948914;
     --border: #ddd;
     --borderhov: #ccc;
     --border2: #666;
@@ -21,8 +14,6 @@
     --green: green;
     --greenhov: rgb(3, 117, 3);
     --inputbg: #fff7eb;
-    --secprim: #efe89a;
-    --secprimhov: #dbd37f;
 }
 :root .darkmode {
     --bg: #282828;
@@ -32,13 +23,6 @@
     --hell2: #090909;
     --txt: #d5cece;
     --dark: #000;
-    --prim: #bef1e1;
-    --primhov: #aeccc2;
-    --sec: #2dce8b;
-    --sechov: #19a46a;
-    --primhell: #599f89;
-    --primhell2: #90bdaf;
-    --primdark: #948914;
     --border: #363636;
     --borderhov: #ccc;
     --border2: #666;
@@ -47,8 +31,6 @@
     --green: rgb(119, 185, 119);
     --greenhov: rgb(3, 117, 3);
     --inputbg: #fff7eb;
-    --secprim: #efe89a;
-    --secprimhov: #dbd37f;
 }
 
 @font-face {
@@ -225,7 +207,7 @@ h3 {
     text-decoration: underline;
 }
 .answer_bubble {
-    background: var(--primhell2);
+    background: var(--prim);
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 30px;
@@ -238,7 +220,7 @@ h3 {
     content: "";
     border-width: 15px 15px 0;
     border-style: solid;
-    border-color: var(--primhell2) transparent;
+    border-color: var(--prim) transparent;
     position: absolute;
     top: 98%;
     left: 20px;
@@ -365,7 +347,7 @@ h3 {
 }
 .button_link {
     transition: all 0.2s;
-    color: var(--primhov);
+    color: var(--prim);
     cursor: pointer;
     display: inline-block;
 }
@@ -374,7 +356,7 @@ h3 {
 }
 .button_link_prim_ul {
     transition: all 0.2s;
-    color: var(--primhov);
+    opacity: 0.7;
     cursor: pointer;
     text-decoration: underline;
 }
@@ -776,7 +758,7 @@ input, select, textarea {
     vertical-align: middle;
 }
 .button_prim:hover {
-    background: var(--primhov);
+    opacity: 0.8;
 }
 .button_green:hover {
     background: var(--greenhov);
@@ -794,15 +776,12 @@ input, select, textarea {
 .button_prim_txt:hover .svg_icon {
     fill: var(--prim);
 }
-.button_sec:hover {
-    background: var(--bghov);
-}
+
 .button_grey:hover {
     background: var(--borderhov);
 }
 .button_prim_ol:hover {
-    border-color: var(--primhov);
-    color: var(--primhov);
+    opacity: 0.7;
 }
 .special_hover_btn .svg_icon {
     position: absolute;
@@ -843,7 +822,7 @@ input, select, textarea {
     transition: all 0.1s; 
 }
 #sign_email:hover, #sign_email:active, #sign_email:focus {
-    border-color: var(--primhov) !important;
+    border-color: var(--prim) !important;
 }
 
 .btn_big {
@@ -883,7 +862,8 @@ td, th {
     transition: all 0.1s; 
 }
 .colprimhov {
-    fill: var(--primhov);
+    opacity: 0.8;
+    color: var(--prim);
 }
 .top_footer_desc {
     margin-top: 30px;
@@ -908,11 +888,10 @@ td, th {
     border: 1px solid var(--prim);
 }
 .header_sticky .header .button_black:hover {
-    border-color: var(--primhov);
-    color: var(--primhov);
+    opacity: 0.7;
 }
 .header_sticky .header .button_black_ol:hover {
-    background: var(--primhov);
+    opacity: 0.8;
 }
 .alri {
     text-align: right;
@@ -931,11 +910,11 @@ td, th {
     color: var(--txt);
 }
 .button_prim_txt {
-    color: var(--primhov);
+    opacity: 0.7;
     padding: 0px !important;
 }
 .button_prim_txt .svg_icon {
-    fill: var(--primhov);
+    opacity: 0.8;
 }
 .button_prim_txt i {
     margin-right: 0px !important;
@@ -1116,7 +1095,7 @@ a, div {
     box-shadow: 0 1px 3px -2px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
 }
 #new_spieler_form input {
-    background: var(--primhell2);
+    background: var(--prim);
 }
 .header_logo {
     display: inline-block;
@@ -1222,7 +1201,7 @@ a {
     position: absolute;
     right: 0px;
     left: 80px;
-    background: var(--primhov);
+    opacity: 0.8;
     bottom: 10px;
     top: 10px;
     border-radius: 5px;
@@ -1262,10 +1241,10 @@ a {
 }
 
 .material_bottom_active {
-    color: var(--primhov) !important;
+    opacity: 0.8 !important;
 }
 .material_bottom_active i {
-    background: var(--primhell) !important;
+    background: var(--prim) !important;
 }
 .lobbyitem i span:before {
     content: "cancel";
@@ -1280,13 +1259,13 @@ a {
     text-align: left;
 }
 .inputbg {
-    background: var(--primhell2);
+    background: var(--prim);
 }
 .lobby_action_btn_disabled {
     opacity: 0.5;
 }
 .starten_start_btn {
-    background: var(--primhov) !important;
+    opacity: 0.8 !important;
     color: var(--hell) !important;
     border: none !important;
     cursor: pointer;
@@ -1304,7 +1283,7 @@ a {
     transition: all 0.2s;
 }
 .lobby_action_btn:hover {
-    background: var(--primhov) !important;
+    opacity: 0.8 !important;
 }
 .lobby_action_btn_disabled:hover {
     background: var(--prim) !important;
@@ -1426,7 +1405,7 @@ a {
     background: var(--bghov);
 }
 .letzte_spielberichte:hover i {
-    color: var(--primhov);
+    opacity: 0.7;
     transition: all 0.2s;
 }
 .letzte_spielberichte i {
@@ -1486,7 +1465,7 @@ a {
     color: var(--hell) !important;
 }
 .stepstart, .stepnext {
-    background: var(--primhov);
+    opacity: 0.8;
     color: var(--hell);
     margin-top: 40px;
     font-weight: bold;
@@ -1500,10 +1479,10 @@ a {
     transition: all 0.2s;
 }
 .letter_card:hover {
-    background: var(--primhell2);
+    background: var(--borderhov);
 }
 .selected_active {
-    background: var(--primhell) !important;
+    background: var(--borderhov) !important;
 }
 .stepnext i {
     position: absolute;
@@ -1535,7 +1514,7 @@ a {
     top: 10px;
     left: 10px;
     font-size: 40px;
-    color: var(--primhov);
+    opacity: 0.7;
 }
 .bold {
     font-weight: bold;
@@ -1637,11 +1616,10 @@ a {
     fill: var(--txt);
 }
 .chiphov:hover {
-    color: var(--primhov);
-    border-color: var(--primhov);
+    opacity: 0.7;
 }
 .chiphov:hover .svg_icon {
-    fill: var(--primhov);
+    opacity: 0.8;
 }
 .chipprimopa {
     background: var(--prim);

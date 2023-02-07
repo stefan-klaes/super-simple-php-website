@@ -40,7 +40,14 @@ $seokeywords = isset($route['seokeywords']) ? $route['seokeywords'] : '';
         }
         ?>
 
-
+	<style>
+		:root {
+			--prim: <?php echo $config['primary_color'] ?>;
+		}
+		:root .darkmode {
+			--prim: <?php echo $config['primary_color_darkmode'] ?>;
+		}
+	</style>
 	</head>
 
 	<body id="body" class="<?php if (isset($_COOKIE["sidenav"])) { echo $_COOKIE["sidenav"]; } ?> <?php echo $darkmode ?>">

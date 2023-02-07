@@ -215,30 +215,15 @@ function this_validated_md(thiss) {
    
 }
 
-
-// toggle a switch
-function switch_toggle(thiss) {
- 
-    if ( thiss.className.indexOf("switch_yes") > - 1 ) {
-        thiss.classList.remove("switch_yes");
-        var switch_active = "no";
+// toggle the navigation
+function member_toggle_nav() {
+    var der_body = document.getElementById("body");
+    if ( der_body.className.indexOf("sidenav_close") > - 1) {
+        der_body.classList.remove("sidenav_close");
+        deletecookie('sidenav');
     }
     else {
-        thiss.classList.add("switch_yes");
-        var switch_active = "yes";
+        der_body.classList.add("sidenav_close");
+        setcookie('sidenav','sidenav_close',1000);
     }
- 
-    var title = thiss.title;
- 
-    if ( title.indexOf("datenschutz") > -1 ) {
-        if ( switch_active == "yes" ) {
-            document.getElementById("hidden_datenschutz").value = "yes";
-        }
-        else {
-            document.getElementById("hidden_datenschutz").value = "no";
-        }
-        
- 
-    }
- 
 }

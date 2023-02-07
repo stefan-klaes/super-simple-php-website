@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * @route: path="/impressum" name="impressum"
+ * @route: path="/imprint" name="Imprint"
  * @headline: Impressum
  * 
 * navigation data:
