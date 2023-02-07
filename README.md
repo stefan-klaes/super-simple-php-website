@@ -1,5 +1,5 @@
 # Super Simple PHP Website
-- mini-mini PHP framework
+Mini-mini PHP framework to create great websites, fast.
 
 ## Create a great looking website very fast
 - check out [my website](https://coden-lassen.de) which is based on this template
