@@ -2,11 +2,12 @@
 
 ## Create a great looking website very fast
 - check out https://coden-lassen.de which is based on this template
+- or check out [go](https://demo.coden-lassen.de){:target="_blank"} which is exactly this template
 - This is a mini-mini-framework so the pagespeed should be awesome
 - use the mini-framework functionality to do cool things very easy
 
 ## Check out the documentation:
-- https://coden-lassen.de/github/super-simple-php-website/docu
+- https://demo.coden-lassen.de/docu
 
 ![My Image](static/img/screenshot1.png)
 ![My Image](static/img/screenshot2.png)
