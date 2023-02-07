@@ -44,7 +44,7 @@ Mini-mini PHP framework to create great websites, fast.
  * 
  */
  ?>
- <h1>Your html</h2>
+ <h1>Your html</h1>
 ```
 3. Thas it. Your site will be visible at your-domain.com/services
 

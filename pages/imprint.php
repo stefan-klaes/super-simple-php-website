@@ -2,10 +2,10 @@
 /**
  * 
  * @route: path="/imprint" name="Imprint"
- * @headline: Impressum
+ * @headline: Imprint
  * 
 * navigation data:
- * @navname: Impressum
+ * @navname: Imprint
  * @navdisplay: official
  * 
  */
