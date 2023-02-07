@@ -1,13 +1,13 @@
 # Super Simple mini PHP framework
 
 ## Create a great looking website very fast
-- check out https://coden-lassen.de which is based on this template
-- or check out [demo](https://demo.coden-lassen.de) which is exactly this template
+- check out [my website](https://coden-lassen.de) which is based on this template
+- or check out the [demo website](https://demo.coden-lassen.de) which is exactly this template
 - This is a mini-mini-framework so the pagespeed should be awesome
 - use the mini-framework functionality to do cool things very easy
 
 ## Check out the documentation:
-- https://demo.coden-lassen.de/docu
+- Read the [documentation](https://demo.coden-lassen.de/docu)
 
 ![My Image](static/img/screenshot1.png)
 ![My Image](static/img/screenshot2.png)
