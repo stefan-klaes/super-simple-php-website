@@ -256,9 +256,9 @@
         <div class="code_highlight" style="margin-bottom:40px;">
 <?php highlight_string('
 <?php
-// check out includes/blokcs/visit-github.php
+// check out includes/blocks/visit-github.php
 // that is an example (scroll to the bottom of the page to see it)
-// create a new block in includes/blokcs/my-block.php
+// create a new block in includes/blocks/my-block.php
 // add content, e.g. <p>Hello, my name is Stefan</p>
 // display the block like this:
     

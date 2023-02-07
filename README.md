@@ -50,8 +50,8 @@ Mini-mini PHP framework to create great websites, fast.
 
 ### Use custom content/blocks everywhere
 
-1. check out the example in includes/blokcs/visit-github.php
-2. create a new block in includes/blokcs/my-block.php
+1. check out the example in includes/blocks/visit-github.php
+2. create a new block in includes/blocks/my-block.php
 3. add content, e.g. `<p>Hello, my name is Stefan</p>`
 4. display the block like this:
 ```  
