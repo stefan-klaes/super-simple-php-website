@@ -1,14 +1,13 @@
 <?php
 /**
- * Verwaltungsdatei aller geheimer Informationen wie beispielsweise:
- * Passwörter, Logindaten, API-Schlüssel, ...
+ * File to store your secrets
+ * passwords, login data, api keys, ...
  */
 
 class Secrets {
 
     public function getSecrets() {
 
-        // Array mit Passwörtern und Schlüsseln
         $secrets = [
 
             //local databsse
