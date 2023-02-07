@@ -53,7 +53,7 @@ Mini-mini PHP framework to create great websites, fast.
 1. check out the example in includes/blokcs/visit-github.php
 2. create a new block in includes/blokcs/my-block.php
 3. add content, e.g. `<p>Hello, my name is Stefan</p>`
-4 display the block like this:
+4. display the block like this:
 ```  
 <?php showBlock('my-block') ?>
 ```
